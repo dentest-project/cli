@@ -114,6 +114,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ea221b5284a47e40033bf9b66f35f984ec0ea2931eb03505246cd27a963f981b"
 
 [[package]]
+name = "dentest"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "dotenv",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "termion",
+ "yaml-rust",
+]
+
+[[package]]
 name = "dotenv"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -126,19 +139,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "80df024fbc5ac80f87dfef0d9f5209a252f2a497f7f42944cff24d8253cac065"
 dependencies = [
  "cfg-if 1.0.0",
-]
-
-[[package]]
-name = "entest"
-version = "0.1.0"
-dependencies = [
- "clap",
- "dotenv",
- "reqwest",
- "serde",
- "serde_json",
- "termion",
- "yaml-rust",
 ]
 
 [[package]]

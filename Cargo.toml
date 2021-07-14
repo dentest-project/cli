@@ -1,5 +1,5 @@
 [package]
-name = "entest"
+name = "dentest"
 version = "0.1.0"
 authors = ["Pierre Rolland <roll.pierre@gmail.com>"]
 edition = "2018"

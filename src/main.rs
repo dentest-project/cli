@@ -13,7 +13,7 @@ use termion::{color, style};
 #[derive(Clap)]
 #[clap(version = "1.0.0", author = "Pierre Rolland <pierre@rolland.dev>")]
 struct Opts {
-    #[clap(short, long, default_value = ".entest.yml")]
+    #[clap(short, long, default_value = ".dentest.yml")]
     config: String,
     #[clap(subcommand)]
     subcmd: SubCommand,

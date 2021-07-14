@@ -34,10 +34,10 @@ fn get<T: DeserializeOwned>(url: &str, fetch_msg: &str, decode_msg: &str) -> Res
 }
 
 fn retrieve_token() -> Result<String, Error> {
-    match env::var("ENTEST_TOKEN") {
+    match env::var("DENTEST_TOKEN") {
         Ok(t) => Ok(t),
         Err(_) => Err(Error::new(String::from(
-            "Could not retrieve the ENTEST_TOKEN env var",
+            "Could not retrieve the DENTEST_TOKEN env var",
         ))),
     }
 }

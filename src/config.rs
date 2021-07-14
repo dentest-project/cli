@@ -12,10 +12,10 @@ pub fn extract_config_value(config_file: &String, property: &str) -> Yaml {
 
 #[cfg(debug_assertions)]
 pub fn get_api_url() -> String {
-    String::from("http://api.entest.local")
+    String::from("http://api.dentest.local")
 }
 
 #[cfg(not(debug_assertions))]
 pub fn get_api_url() -> String {
-    String::from("https://api.ente.st")
+    String::from("https://api.dentest.tech")
 }
