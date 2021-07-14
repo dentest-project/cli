@@ -46,6 +46,16 @@ fn get_dir(config_file: String) -> Result<String, Error> {
 }
 
 fn clear_dir(dir: &String) -> Result<(), Error> {
+    match fs::metadata(dir) {
+        Ok(m) => match m.is_dir() {
+            true => (),
+            false => return Err(Error::new(format!("\"{}\" is not a directory", dir))),
+        },
+        Err(_) => {
+            return Ok(());
+        }
+    }
+
     println!(
         "{}{}Clearing{} \"{}\" directory",
         style::Bold,
