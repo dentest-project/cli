@@ -66,7 +66,7 @@ pub fn retrieve_paths() -> Result<Vec<String>, Error> {
     }
 }
 
-pub fn retrieve_features() -> Result<Vec<FeatureListItem>, Error> {
+pub fn retrieve_features(inline_parameter_wrapper: String) -> Result<Vec<FeatureListItem>, Error> {
     println!(
         "{}{}Fetching{} features",
         style::Bold,
@@ -74,7 +74,7 @@ pub fn retrieve_features() -> Result<Vec<FeatureListItem>, Error> {
         style::Reset
     );
     let response: Value = match get(
-        "pull/features",
+        format!("pull/features?inlineParameterWrapper={}", inline_parameter_wrapper).as_str(),
         "Could not retrieve features",
         "Could not decode the response from server while retrieving features",
     ) {

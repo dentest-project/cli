@@ -7,12 +7,13 @@ use termion::{color, style};
 use yaml_rust::Yaml;
 
 pub fn pull(config_file: String) -> Result<(), Error> {
-    let dir = match get_dir(config_file) {
+    let dir = match get_dir(&config_file) {
         Ok(s) => s,
         Err(e) => {
             return Err(e);
         }
     };
+    let inline_parameter_wrapper = get_inline_parameter_wrapper(&config_file);
     match clear_dir(&dir) {
         Ok(_) => (),
         Err(e) => {
@@ -25,7 +26,7 @@ pub fn pull(config_file: String) -> Result<(), Error> {
             return Err(e);
         }
     };
-    match retrieve_features(&dir) {
+    match retrieve_features(&dir, inline_parameter_wrapper) {
         Ok(_) => (),
         Err(e) => {
             return Err(e);
@@ -35,13 +36,20 @@ pub fn pull(config_file: String) -> Result<(), Error> {
     return Ok(());
 }
 
-fn get_dir(config_file: String) -> Result<String, Error> {
+fn get_dir(config_file: &String) -> Result<String, Error> {
     match extract_config_value(&config_file, "dir") {
         Yaml::String(s) => Ok(s),
         _ => Err(Error::new(format!(
             "Please add a \"dir\" property to {}",
             config_file
         ))),
+    }
+}
+
+fn get_inline_parameter_wrapper(config_file: &String) -> String {
+    match extract_config_value(&config_file, "inline_parameter_wrapper") {
+        Yaml::String(s) => s,
+        _ => String::from(""),
     }
 }
 
@@ -113,8 +121,8 @@ fn write_paths(dir: &String, paths: Vec<String>) -> Result<(), Error> {
     Ok(())
 }
 
-fn retrieve_features(dir: &String) -> Result<(), Error> {
-    let result = match client::retrieve_features() {
+fn retrieve_features(dir: &String, inline_parameter_wrapper: String) -> Result<(), Error> {
+    let result = match client::retrieve_features(inline_parameter_wrapper) {
         Ok(v) => v,
         Err(e) => {
             return Err(e);

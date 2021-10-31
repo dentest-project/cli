@@ -1,6 +1,6 @@
 [package]
 name = "dentest"
-version = "1.0.0"
+version = "1.1.0"
 authors = ["Pierre Rolland <roll.pierre@gmail.com>"]
 edition = "2018"
 
